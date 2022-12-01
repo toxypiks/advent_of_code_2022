@@ -12,17 +12,28 @@ def einlesen(input_path):
         else:
             all_input.append(new_elve)
             new_elve = []
+    all_input.append(new_elve)
     return all_input
 
+
 def calorie_counting(input_data):
-    highest_amount = -1
+    highest_amount1 = -1
+    highest_amount2 = -1
+    highest_amount3 = -1
     for data in input_data:
         sum_akku = 0
         for number in data:
             sum_akku += number
-        if sum_akku > highest_amount:
-            highest_amount = sum_akku
-    return highest_amount
+        if sum_akku > highest_amount1:
+            highest_amount3 = highest_amount2
+            highest_amount2 = highest_amount1
+            highest_amount1 = sum_akku
+        elif sum_akku > highest_amount2:
+            highest_amount3 = highest_amount2
+            highest_amount2 = sum_akku
+        elif sum_akku > highest_amount3:
+            highest_amount3 = sum_akku    
+    return (highest_amount1 + highest_amount2 + highest_amount3)
         
         
 
