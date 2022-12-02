@@ -10,21 +10,21 @@ split x y = func x y [[]]
         else 
             func x ys ((y:z):zs)
 
-elfes :: [String] -> [[String]] -> [[String]]
-elfes [] [] = []
-elfes (x:[]) [] = [[x]]
-elfes (x:xs) [] = elfes xs [[x]]
-elfes [] (y:ys) |y == [] = ys
+elves :: [String] -> [[String]] -> [[String]]
+elves [] [] = []
+elves (x:[]) [] = [[x]]
+elves (x:xs) [] = elves xs [[x]]
+elves [] (y:ys) |y == [] = ys
                 |otherwise = (y:ys)
-elfes (x:xs) (y:ys) | x /= "" = elfes xs ((x:y):ys) 
-                    | otherwise = elfes xs ([]:(y:ys))
+elves (x:xs) (y:ys) | x /= "" = elves xs ((x:y):ys)
+                    | otherwise = elves xs ([]:(y:ys))
 
 main = do  
         let list = []
         handle <- openFile "input_small.txt" ReadMode
         contents <- hGetContents handle
         let singlewords = split '\n' contents
-            list = elfes singlewords []
+            list = elves singlewords []
         print list
         hClose handle   
 
