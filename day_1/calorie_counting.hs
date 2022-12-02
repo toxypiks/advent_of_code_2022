@@ -25,7 +25,7 @@ main = do
         contents <- hGetContents handle
         let singlewords = split '\n' contents
             list = elves singlewords []
-        print list
+        print $ foldr max 0 (map (sum . (map read)) list)
         hClose handle   
 
 f :: [String] -> [Int]
