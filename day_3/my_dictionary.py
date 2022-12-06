@@ -17,13 +17,13 @@ class dicti:
                 return value
         return -1     
     
-    def set(self, key, value):
+    def set(self, key, new_value):
         index = self.hash(ord(key))
         value_vec = self.inner_array[index]
         for (ikey, value) in value_vec:
             if ikey == key:
                 return 
-        value_vec.append((key, value))    
+        value_vec.append((key, new_value))    
     
     def hash(self, key: int):
         index = key % self.size
